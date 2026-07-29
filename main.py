@@ -25,7 +25,8 @@ class AgentResponse(BaseModel):
 
     answer: str = Field(description="The answer to the query")
     sources: list[Source] = Field(
-        default_factory=list, description="List of sources used by the agent to generate the answer"
+        default_factory=list,
+        description="List of sources used by the agent to generate the answer",
     )
 
 
