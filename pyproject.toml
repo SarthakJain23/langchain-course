@@ -11,5 +11,6 @@ dependencies = [
     "langchain-google-genai>=4.2.7",
     "langchain-tavily>=0.2.18",
     "python-dotenv>=1.2.2",
+    "streamlit>=1.60.0",
     "tavily-python>=0.7.26",
 ]

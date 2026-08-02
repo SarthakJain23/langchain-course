@@ -1,10 +1,10 @@
-from langchain_core.messages import ToolMessage
 import os
 from typing import Any, Dict
 
 from dotenv import load_dotenv
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
+from langchain_core.messages import ToolMessage
 from langchain_core.tools import tool
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
@@ -70,7 +70,16 @@ def run_llm(query: str) -> Dict[str, Any]:
     )
     messages = [{"role": "user", "content": query}]
     result = agent.invoke({"messages": messages})
-    answer = result.get("messages")[-1].content
+    raw_answer = result.get("messages")[-1].content
+    if isinstance(raw_answer, str):
+        answer = raw_answer
+    elif isinstance(raw_answer, list):
+        answer = "\n".join(
+            block.get("text", "") if isinstance(block, dict) else str(block)
+            for block in raw_answer
+        )
+    else:
+        answer = str(raw_answer)
     context_docs = []
 
     for message in result.get("messages"):
@@ -79,4 +88,3 @@ def run_llm(query: str) -> Dict[str, Any]:
                 context_docs.extend(message.artifact)
 
     return {"answer": answer, "context": context_docs}
-
