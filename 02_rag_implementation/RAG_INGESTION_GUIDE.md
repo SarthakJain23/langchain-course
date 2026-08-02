@@ -30,7 +30,7 @@ The ingestion pipeline processes raw text documents (such as legal texts or acts
 
 ### 1. Fail-Fast Environment Validation (`validate_env`)
 
-- **Concept**: Before performing network or disk operations, validate that all required API keys (`PINECONE_API_KEY`, `GOOGLE_API_KEY`) and configurations (`INDEX_NAME`) exist.
+- **Concept**: Before performing network or disk operations, validate that all required API keys (`PINECONE_API_KEY`, `GOOGLE_API_KEY`) and configurations (`GST_ACT_INDEX_NAME`) exist.
 - **Advantages**:
   - **Fail-Fast**: Prevents partial document processing or silent failures mid-ingestion.
   - **Developer Experience**: Clear, actionable error messages instruct what `.env` keys are missing.
@@ -99,7 +99,7 @@ Below is the complete logic breakdown of [`02_rag_implementation/rag_ingestion.p
 ```python
 # 1. Environment Validation
 def validate_env() -> dict[str, str]:
-    required_vars = ["PINECONE_API_KEY", "GOOGLE_API_KEY", "INDEX_NAME"]
+    required_vars = ["PINECONE_API_KEY", "GOOGLE_API_KEY", "GST_ACT_INDEX_NAME"]
     missing = [var for var in required_vars if not os.getenv(var)]
     if missing:
         raise ValueError(f"Missing required environment variables: {', '.join(missing)}")

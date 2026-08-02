@@ -13,7 +13,7 @@ load_dotenv()
 
 def validate_env() -> dict[str, str]:
     """Validate required environment variables for RAG ingestion."""
-    required_vars = ["PINECONE_API_KEY", "GOOGLE_API_KEY", "INDEX_NAME"]
+    required_vars = ["PINECONE_API_KEY", "GOOGLE_API_KEY", "GST_ACT_INDEX_NAME"]
     missing = [var for var in required_vars if not os.getenv(var)]
 
     if missing:
@@ -120,7 +120,7 @@ def main():
     chunks = split_documents(documents, chunk_size=500, chunk_overlap=50)
 
     ingest_to_vectorstore(
-        chunks=chunks, index_name=env_vars["INDEX_NAME"], batch_size=100
+        chunks=chunks, index_name=env_vars["GST_ACT_INDEX_NAME"], batch_size=100
     )
 
 

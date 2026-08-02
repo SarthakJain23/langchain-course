@@ -18,22 +18,25 @@ Ensure your root `.env` file includes:
 ```env
 GOOGLE_API_KEY=your_google_api_key
 PINECONE_API_KEY=your_pinecone_api_key
-INDEX_NAME=your_pinecone_index_name
+GST_ACT_INDEX_NAME=your_pinecone_index_name
 ```
 
 ## How to Run
 
 ### 1. Ingest Documents into Pinecone
+
 ```bash
 python 02_rag_implementation/rag_ingestion.py
 ```
 
 ### 2. Query via Tool-Calling Agent
+
 ```bash
 python 02_rag_implementation/rag_agent.py "What is the penalty for late tax filing under CGST?"
 ```
 
 ### 3. Query via Declarative LCEL Chain
+
 ```bash
 python 02_rag_implementation/rag_lcel.py "What is the penalty for late tax filing under CGST?"
 ```

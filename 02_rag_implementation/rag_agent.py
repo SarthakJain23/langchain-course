@@ -13,7 +13,7 @@ load_dotenv()
 
 def validate_env() -> dict[str, str]:
     """Validate required environment variables for RAG retrieval."""
-    required_vars = ["PINECONE_API_KEY", "GOOGLE_API_KEY", "INDEX_NAME"]
+    required_vars = ["PINECONE_API_KEY", "GOOGLE_API_KEY", "GST_ACT_INDEX_NAME"]
     missing = [var for var in required_vars if not os.getenv(var)]
 
     if missing:
@@ -33,7 +33,7 @@ embeddings = GoogleGenerativeAIEmbeddings(
 )
 
 vectorstore = PineconeVectorStore(
-    index_name=env_vars["INDEX_NAME"],
+    index_name=env_vars["GST_ACT_INDEX_NAME"],
     embedding=embeddings,
 )
 

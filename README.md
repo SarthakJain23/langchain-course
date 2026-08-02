@@ -26,6 +26,7 @@ langchain-course/
 ## Setup & Environment
 
 1. **Install Dependencies**:
+
    ```bash
    uv sync
    # or
@@ -38,18 +39,21 @@ langchain-course/
    GOOGLE_API_KEY=your_google_api_key
    TAVILY_API_KEY=your_tavily_api_key
    PINECONE_API_KEY=your_pinecone_api_key
-   INDEX_NAME=your_index_name
+   GST_ACT_INDEX_NAME=gst-embeddings-index
+   LANGCHAIN_DOC_INDEX_NAME=langchain-doc-index
    ```
 
 ## Running Course Scripts
 
 ### Chapter 1: Agents and Tools
+
 ```bash
 python 01_agents_and_tools/main.py
 python 01_agents_and_tools/tool_calling.py
 ```
 
 ### Chapter 2: RAG Pipeline, Agent & LCEL
+
 ```bash
 # 1. Ingest document chunks into Pinecone
 python 02_rag_implementation/rag_ingestion.py
