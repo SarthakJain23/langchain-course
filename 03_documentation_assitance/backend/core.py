@@ -103,9 +103,10 @@ def _extract_deduplicated_docs(messages: List[BaseMessage]) -> List[Any]:
             artifacts = getattr(message, "artifact", None)
             if isinstance(artifacts, list):
                 for doc in artifacts:
-                    source_key = getattr(doc, "metadata", {}).get(
-                        "source"
-                    ) or getattr(doc, "page_content", "")[:50]
+                    source_key = (
+                        getattr(doc, "metadata", {}).get("source")
+                        or getattr(doc, "page_content", "")[:50]
+                    )
                     if source_key not in seen_sources:
                         seen_sources.add(source_key)
                         context_docs.append(doc)

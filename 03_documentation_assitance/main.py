@@ -58,7 +58,9 @@ if prompt:
                 with st.expander("Sources"):
                     for s in sources:
                         st.markdown(f"- {s}")
-            st.session_state.messages.append({"role": "assistant", "content": answer, "sources": sources})
+            st.session_state.messages.append(
+                {"role": "assistant", "content": answer, "sources": sources}
+            )
 
         except Exception as e:
             st.error("Failed to generate response")
