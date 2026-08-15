@@ -17,5 +17,5 @@ dependencies = [
 ]
 
 [tool.pyright]
-extraPaths = ["04_langgraph_implementation"]
+extraPaths = ["04_langgraph_implementation", "05_reflection_agent"]
 
