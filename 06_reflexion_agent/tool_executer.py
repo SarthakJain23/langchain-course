@@ -14,7 +14,7 @@ def run_queries(search_queries: list[str], **kwargs):
     return tavily_tool.batch([{"query": q} for q in search_queries])
 
 
-excute_tools = ToolNode(
+execute_tools = ToolNode(
     [
         StructuredTool.from_function(run_queries, name=AnswerQuestion.__name__),
         StructuredTool.from_function(run_queries, name=RevisedAnswer.__name__),
