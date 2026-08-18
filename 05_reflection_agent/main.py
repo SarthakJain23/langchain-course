@@ -49,46 +49,46 @@ graph = builder.compile()
 
 if __name__ == "__main__":
     input = HumanMessage(content="""
-    🚀 What if your company had an AI Business Analyst that could read messy financial models, multi-tab Excel sheets, PDFs, and Word docs—without sending sensitive corporate data to third-party vector cloud services?
+    What happens when you feed Swiggy's FY25 and FY26 financial reports into a custom-built, local AI Business Analyst?
 
-I just built and open-sourced **Business Analyst RAG** 📊 — an enterprise-ready, local-first Retrieval-Augmented Generation system designed specifically for financial researchers, strategy teams, and business analysts.
+    Instead of spending hours manually cross-referencing multi-page PDFs, balance sheets, and notes to accounts, I ran our **Business Analyst RAG** on both annual statements. 
 
----
+    Here are two complex questions we tested (and you can see in the demo clip below 👇):
 
-💡 **The Big Problem with Typical Cloud-Based RAG Systems:**
-Many enterprises rushing to adopt SaaS/Cloud RAG tools run into 3 major roadblocks:
-1️⃣ **Data Privacy & Compliance Risk**: Internal financial models, P&L statements, and M&A docs cannot sit on third-party cloud vector stores.
-2️⃣ **Crazy Cloud Infrastructure Costs**: Paying continuous monthly retainers for cloud vector DBs (Pinecone, cloud managed indexes) when local, embedded vector stores handle enterprise knowledge bases at a fraction of the cost.
-3️⃣ **Inefficient Document Sync**: Re-indexing an entire knowledge base every time a document changes burns compute and API quotas.
+    1️⃣ *"Break down the major operational expense heads (delivery/logistics costs, employee benefits, advertising & promotional spend) as a percentage of total revenue for both FY25 and FY26. Where did Swiggy achieve operating leverage?"*
+    2️⃣ *"How did the Gross Order Value (GOV) and contribution margins of Quick Commerce (Instamart) perform in FY26 compared to FY25? Is Quick Commerce inching closer to profitability?"*
 
----
+    The system synthesized cross-year comparisons, extracted exact line items, calculated margin shifts, and cited every single page source with cosine similarity scores in seconds. ⏱️
 
-🔥 **How this solution is built differently:**
+    ---
 
-⚡ **Local & Embedded Vector Storage**: Uses embedded ChromaDB and local state persistence—your vector indices, chunks, and metadata stay 100% on-prem / on your own infrastructure.
-⚡ **Smart SHA-256 Incremental Ingestion**: Tracks file hashes so you only index ADDED or MODIFIED files and evict DELETED ones—zero redundant embedding API calls or full database rebuilds.
-⚡ **Tabular Data Mastery**: Directly converts complex multi-sheet Excel files (.xlsx) and CSVs into structured Markdown tables before chunking, preserving semantic table structures that typical RAG parsers destroy.
-⚡ **Strict Business Analyst Persona**: Prompt-engineered with LangGraph & Google Gemini (`gemini-flash` & `gemini-embeddings`) for quantitative extraction, financial trend analysis, and source citation with relevance match scores.
-⚡ **Plug-and-Play Dashboard**: Built with an interactive Streamlit UI featuring real-time response streaming, customizable Top-K retrieval, and similarity threshold filters.
+    💡 **Why build a Local-First Business Analyst RAG instead of standard cloud tools?**
 
----
+    For corporate strategy, finance, and M&A teams, typical cloud-based RAG presents real challenges:
+    🔒 **Data Privacy & Compliance**: Sensitive balance sheets, internal forecasts, and P&L drafts never leave your local infrastructure.
+    💰 **Zero Bloated Cloud Vector Bills**: Uses embedded ChromaDB and local disk persistence—no recurring cloud vector database retainers.
+    ⚡ **Smart SHA-256 Incremental Ingestion**: Tracks file hashes so updating or re-syncing documents only re-indexes modified/new files, saving compute and API quotas.
+    📊 **Native Tabular & Document Parsing**: Preserves complex multi-tab spreadsheets, CSVs, Word docs, and financial PDFs cleanly as structured markdown.
+    🧠 **Tailored Business Analyst Persona**: Powered by LangGraph and Google Gemini (`gemini-flash` & `gemini-embeddings`) with rigorous quantitative prompt constraints and strict evidence citation.
 
-🏢 **Where companies can use this today:**
-✅ **M&A Due Diligence**: Ingest hundreds of vendor contracts and balance sheets for instant cross-document risk discovery.
-✅ **Quarterly Earnings & Strategy Briefings**: Query across 10-Ks, board decks, and strategy notes in seconds.
-✅ **Operations & Supply Chain Audits**: Cross-reference multi-tab supplier spreadsheets and inventory logs.
+    ---
 
----
+    🏢 **Where teams can use this today:**
+    ✅ **M&A Due Diligence & Deal Sourcing**: Ingest hundreds of balance sheets and contracts for automated risk checks.
+    ✅ **Earnings & Competitor Intelligence**: Instantly compare multi-year annual reports across competitors.
+    ✅ **Internal FP&A and Operations**: Cross-analyze supplier cost sheets and operational expense models.
 
-🛠️ **Tech Stack**:
-Python | Streamlit | ChromaDB | Google Gemini API & Embeddings | LangGraph / LangChain | Pandas & OpenPyXL
+    ---
 
-Check out the GitHub repo here 👉 [Insert your GitHub Repo Link]
+    🛠️ **Tech Stack**:
+    Python | Streamlit | ChromaDB | Google Gemini API & Embeddings | LangGraph / LangChain | Pandas & OpenPyXL
 
-I’d love to hear your thoughts: How is your team currently handling RAG for internal sensitive tabular data & spreadsheets? Drop your thoughts below! 👇
+    Check out the full open-source project and code on GitHub 👉 [Insert your GitHub Repo Link]
 
-#AI #GenerativeAI #RAG #MachineLearning #BusinessIntelligence #DataScience #Python #LangChain #LLM #FinTech
+    How is your team handling automated financial analysis and internal document intelligence today?
+
+    #AI #GenerativeAI #RAG #FinancialAnalysis #Swiggy #BusinessIntelligence #Python #MachineLearning #LangChain #DataScience #LLM #FinTech
 
     """)
     response = graph.invoke({"messages": [input]})
-    print(response)
+    print(response["messages"][LAST].content[0]["text"])
